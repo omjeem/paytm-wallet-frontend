@@ -44,7 +44,7 @@ export function SignIn() {
                 }),
                 {
                   pending: 'Loading... 🕒',
-                  success: 'Logged In Successfull ! 🎉',
+                  success: 'Logged In Successfull! 🎉',
                   error: 'Incorrect Username or Password'
                 }
                 , { autoClose: 2000, pauseOnHover: false, });
