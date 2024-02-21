@@ -48,11 +48,9 @@ export function SignIn() {
                   error: 'Incorrect Username or Password'
                 }
                 , { autoClose: 2000, pauseOnHover: false, });
-              console.log("response: ", response)
               localStorage.setItem("token", response.data.token)
               navigate("/dashboard")
             } catch (e) {
-              console.log("Error: ", e)
               { wrongCredentials() }
             }
 

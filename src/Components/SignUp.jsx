@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { pleaseEnterAllDetails, signedUpSuccessfull, userNameAlreadyTaken } from "../Toasts";
+import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_API_URL;
 
 
@@ -45,19 +46,24 @@ export function SignUp() {
               {pleaseEnterAllDetails()}
               return;
             }
-            try {
-              const response = await axios.post(api + "/api/v1/user/signup", {
-                username,
-                password,
-                firstName,
-                lastName
-              })
-                {signedUpSuccessfull()}
-                localStorage.setItem("token", response.data.token);
-                navigate("/dashboard");
-           
+             try {
+              const response = await toast.promise(
+                axios.post(api + "/api/v1/user/signup", {
+                  username,
+                  password,
+                  firstName,
+                  lastName
+                }),
+                {
+                  pending: 'Loading... 🕒',
+                  success: 'Sign Up Successfull ! 🎉',
+                  error: 'Username already taken'
+                }
+                , { autoClose: 2000, pauseOnHover: false, });
+              localStorage.setItem("token", response.data.token)
+              navigate("/dashboard")
             } catch (e) {
-              {userNameAlreadyTaken()}
+              console.log("Error: ", e)
             }
 
 

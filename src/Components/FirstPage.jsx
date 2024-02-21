@@ -26,7 +26,6 @@ export function FirstPage() {
                 }
             })
             .catch(function (error) {
-                console.log("Error:", error);
                 navigate("/signin");
             });
         }
