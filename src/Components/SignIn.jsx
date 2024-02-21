@@ -42,7 +42,7 @@ export function SignIn() {
                 navigate("/dashboard")
               }
               else {
-                if (response.status === 411) {
+                if (response.status === 404) {
                   alert("Incorrect username or password. Please try again.");
                 }
                 else {
@@ -52,7 +52,7 @@ export function SignIn() {
             }
             catch (e) {
               console.log("Error: ", e)
-              alert("Down Server")
+              alert("Incorrect username or password / User Not Found. Please try again.")
             }
 
           }} label={"Sign in"} />
