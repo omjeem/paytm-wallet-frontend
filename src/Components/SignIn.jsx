@@ -7,6 +7,8 @@ import { BottomWarning } from "./BottomWarning";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {  pleaseEnterAllDetails, wrongCredentials } from "../Toasts";
+import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_API_URL;
 
 
@@ -31,29 +33,30 @@ export function SignIn() {
 
         <div className="pt-4">
           <Button onClick={async () => {
-
+            if (username == '' || password == "") {
+              { pleaseEnterAllDetails()}
+              return;
+            }
             try {
-              const response = await axios.post(api + "/api/v1/user/signin", {
-                username, password
-              })
-
-              if (response.status === 200) {
-                localStorage.setItem("token", response.data.token)
-                navigate("/dashboard")
-              }
-              else {
-                if (response.status === 404) {
-                  alert("Incorrect username or password. Please try again.");
+              const response = await toast.promise(
+                axios.post(api + "/api/v1/user/signin", {
+                  username, password
+                }),
+                {
+                  pending: 'Loading... 🕒',
+                  success: 'Logged In Successfull ! 🎉',
+                  error: 'Incorrect Username or Password'
                 }
-                else {
-                  alert(response.data.message)
-                }
-              }
-            }
-            catch (e) {
+                , { autoClose: 2000, pauseOnHover: false, });
+              console.log("response: ", response)
+              localStorage.setItem("token", response.data.token)
+              navigate("/dashboard")
+            } catch (e) {
               console.log("Error: ", e)
-              alert("Incorrect username or password / User Not Found. Please try again.")
+              { wrongCredentials() }
             }
+
+
 
           }} label={"Sign in"} />
         </div>

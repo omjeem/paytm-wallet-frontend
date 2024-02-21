@@ -6,6 +6,7 @@ import { BottomWarning } from "./BottomWarning";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { pleaseEnterAllDetails, signedUpSuccessfull, userNameAlreadyTaken } from "../Toasts";
 const API_URL = import.meta.env.VITE_API_URL;
 
 
@@ -39,19 +40,26 @@ export function SignUp() {
         }} placeholder="12345" label={"Password"} />
 
         <div className="pt-4">
-          <Button onClick={ async () =>{
-             if(firstName=='' || lastName=="" || username=="" || password==""){
-              alert("Please enter all details")
+          <Button onClick={async () => {
+            if (firstName == '' || lastName == "" || username == "" || password == "") {
+              {pleaseEnterAllDetails()}
               return;
-             }
-             const response = await axios.post(api+"/api/v1/user/signup",{
-              username,
-              password,
-              firstName,
-              lastName
-             })
-             localStorage.setItem("token",response.data.token);
-             navigate("/dashboard")
+            }
+            try {
+              const response = await axios.post(api + "/api/v1/user/signup", {
+                username,
+                password,
+                firstName,
+                lastName
+              })
+                {signedUpSuccessfull()}
+                localStorage.setItem("token", response.data.token);
+                navigate("/dashboard");
+           
+            } catch (e) {
+              {userNameAlreadyTaken()}
+            }
+
 
           }} label={"Sign Up"} />
         </div>

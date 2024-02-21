@@ -1,6 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
+import { pleaseEnterOneFieldForUpdation} from '../Toasts';
+import { toast } from 'react-toastify';
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const UpdateProfile = () => {
@@ -62,8 +64,13 @@ export const UpdateProfile = () => {
                             />
                         </div>
                         <button onClick={async () => {
-                            try {
-                                const response = await axios.put( api + "/api/v1/updateProfile", {
+                            if(firstName=="" && lastName=="" && password==""){
+                                {pleaseEnterOneFieldForUpdation()}
+                                return;
+                            }
+                           
+                            await toast.promise(
+                                axios.put( api + "/api/v1/updateProfile", {
                                     data: {
                                         ...(firstName && { firstName }),
                                         ...(lastName && { lastName }),
@@ -73,14 +80,16 @@ export const UpdateProfile = () => {
                                     headers: {
                                         Authorization: localStorage.getItem("token")
                                     }
-                                })
+                                }),
+                                {
+                                    pending: 'Loading... 🕒',
+                                    success: 'Profile Updated Successfull ! 🎉',
+                                    error: 'Profile Update Failed'
+                                }
+                                , { autoClose: 2000, pauseOnHover: false, });
 
-                                alert(response.data.message)
-                            }
-                            catch (err) {
-                                alert("Profile Not Updated")
-                            }
-
+                            
+                         
                         }} class="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white">
                             Update Profile
                         </button>

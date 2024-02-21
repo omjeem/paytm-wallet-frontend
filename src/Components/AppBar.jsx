@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "./Icon";
+import { loggedOutSuccessfull } from "../Toasts";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -46,7 +47,7 @@ export function AppBar() {
                             <button onClick={() => {
                                 localStorage.removeItem("token");
                                 navigate("/signin")
-                                alert("Logout Successfully")
+                                {loggedOutSuccessfull()}
                             }} type="button" class="w-15 h-15  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 me-2 ">Log Out</button>
                         </div>
 
