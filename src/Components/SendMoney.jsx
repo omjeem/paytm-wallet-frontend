@@ -55,7 +55,7 @@ export const SendMoney = () => {
                                     }
                                 }),
                                 {
-                                    pending: 'Trnascation in progress... 🕒',
+                                    pending: 'Transaction in progress... 🕒',
                                     success: 'Transaction Successfull ! 🎉',
                                     error: 'Insufficient Balance'
                                 }

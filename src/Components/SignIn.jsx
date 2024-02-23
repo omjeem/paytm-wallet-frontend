@@ -7,7 +7,7 @@ import { BottomWarning } from "./BottomWarning";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {  pleaseEnterAllDetails, wrongCredentials } from "../Toasts";
+import { pleaseEnterAllDetails, wrongCredentials } from "../Toasts";
 import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_API_URL;
 
