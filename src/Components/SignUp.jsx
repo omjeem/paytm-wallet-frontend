@@ -55,7 +55,7 @@ export function SignUp() {
                   lastName
                 }),
                 {
-                  pending: 'Loading... 🕒',
+                  pending: 'Loading... ⏳ Please be patient as we process your request. It may take a few moments.',
                   success: 'Sign Up Successfull ! 🎉',
                   error: 'Username already taken'
                 }
@@ -63,7 +63,6 @@ export function SignUp() {
               localStorage.setItem("token", response.data.token)
               navigate("/dashboard")
             } catch (e) {
-              console.log("Error: ", e)
             }
 
 

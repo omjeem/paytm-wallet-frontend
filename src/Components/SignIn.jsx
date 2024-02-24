@@ -43,7 +43,7 @@ export function SignIn() {
                   username, password
                 }),
                 {
-                  pending: 'Loading... 🕒',
+                  pending: 'Loading... ⏳ Please be patient as we process your request. It may take a few moments.',
                   success: 'Logged In Successfull! 🎉',
                   error: 'Incorrect Username or Password'
                 }
