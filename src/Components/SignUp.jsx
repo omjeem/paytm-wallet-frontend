@@ -25,20 +25,20 @@ export function SignUp() {
   return <div className="bg-slate-300 h-screen flex justify-center">
     <div className="flex flex-col justify-center">
       <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
-        <Heading label={"Sign Up"} />
+        <Heading label={"ex : Sign Up"} />
         <SubHeading label={"Enter your information to create an account"} />
         <InputBox onChange={(e) => {
           setFirstName(e.target.value)
-        }} placeholder="Om" label={"First Name"} />
+        }} placeholder="ex : Om" label={"First Name"} />
         <InputBox onChange={(e) => {
           setLastName(e.target.value)
-        }} placeholder="Mishra" label={"Last Name"} />
+        }} placeholder="ex : Mishra" label={"Last Name"} />
         <InputBox onChange={(e) => {
           setUserName(e.target.value)
-        }} placeholder="omjeem" label={"Username"} />
+        }} placeholder="ex : omjeem" label={"Username"} />
         <InputBox onChange={(e) => {
           setPassword(e.target.value)
-        }} placeholder="12345" label={"Password"} />
+        }} placeholder="ex : omjeem@123" label={"Password"} />
 
         <div className="pt-4">
           <Button onClick={async () => {

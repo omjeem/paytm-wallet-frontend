@@ -26,10 +26,10 @@ export function SignIn() {
         <SubHeading label={"Enter your credentials to access your account"} />
         <InputBox onChange={(e) => {
           setUserName(e.target.value)
-        }} placeholder="omjeem" label={"Username"} />
+        }} placeholder="ex : omjeem" label={"Username"} />
         <InputBox onChange={(e) => {
           setPassword(e.target.value)
-        }} placeholder="12345" label={"Password"} />
+        }} placeholder="ex : omjee@123" label={"Password"} />
 
         <div className="pt-4">
           <Button onClick={async () => {
